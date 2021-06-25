@@ -5,7 +5,7 @@ const dbConn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'node_mysql_crud_db'
+    database: 'inaris'
 })
 
 dbConn.connect((err)=> {
