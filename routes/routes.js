@@ -3,6 +3,7 @@ const express = require('express');
 const {showEmergency,showEmergencyById} = require('../src/controllers/EmergencyController');
 const {showInformation,showInformationById} = require('../src/controllers/InformationController');
 const {showGuide} = require('../src/controllers/GuideController');
+const {showDisaster} = require('../src/controllers/DisasterController');
 const validators = require('../src/validators/validator')
 const router = express.Router();
 
@@ -21,5 +22,8 @@ router.get('/information/search', showInformationById);
 
 // Get All Guide
 router.get('/guide', showGuide);
+
+// Get All Guide
+router.get('/disaster', showDisaster);
  
 module.exports= router;
