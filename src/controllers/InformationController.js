@@ -1,4 +1,4 @@
-const {getInformation,getInformationById} = require('../models/informationModel')
+const {getInformation,getInformationByType,getInformationById} = require('../models/informationModel')
 
 const showInformation = (req,res)=> {
     if(req.query.start === undefined|| req.query.limit === undefined){
@@ -15,11 +15,11 @@ const showInformation = (req,res)=> {
     }
 }
 
-const  showInformationById= (req,res)=>{
-    if(req.query.start === undefined|| req.query.limit === undefined){
-        res.status(201).json({error: "harus menyertakan param start dan limit"});
+const  showInformationByType = (req,res)=>{
+    if(req.params.id === undefined){
+        res.status(201).json({error: "harus menyertakan param id "});
     }else{
-        getInformationById(req.query,(err,results)=>{
+        getInformationByType(req.params,(err,results)=>{
             if (err) {
                 res.send(err)
             } else {
@@ -29,4 +29,18 @@ const  showInformationById= (req,res)=>{
     }
 }
 
-module.exports={showInformation,showInformationById}
+const showInformationById =(req ,res)=>{
+    if(req.params.id === undefined){
+        res.status(201).json({error: "harus menyertakan param id"});
+    }else{
+        getInformationById(req.params,(err,results)=>{
+            if (err) {
+                res.send(err)
+            } else {
+                res.json(results)
+            }
+        });
+    }
+}
+
+module.exports={showInformation,showInformationById,showInformationByType}

@@ -3,7 +3,7 @@
 const dbConn = require('../../config/db.config');
 
 const getInformation = (req,res) =>{
-    dbConn.query("Select * from informasi_bencana limit ?,?",[parseInt(req.start),parseInt(req.limit)],(err,results)=>{
+    dbConn.query("Select * from informasi_bencana where type = ? limit ?,?",[req.id,parseInt(req.start),parseInt(req.limit)],(err,results)=>{
         if (err) {
             console.log(err);
             res(err, null);
@@ -14,8 +14,18 @@ const getInformation = (req,res) =>{
 }
 
 const getInformationById = (req ,res)=>{
-    req.q = '%' + req.q + '%';
-    dbConn.query("select * from informasi_bencana where description like N? limit ?,?",[req.q,parseInt(req.start),parseInt(req.limit)],(err,results)=>{
+    dbConn.query("select * from informasi_bencana where id=? ",[req.id],(err,results)=>{
+        if (err) {
+            console.log(err)
+            res(err,null)
+        } else {
+            res(null,results)
+        }
+    })
+}
+
+const getInformationByType = (req ,res)=>{
+    dbConn.query("select a.* from informasi_bencana as a inner join tbl_bencana as b on a.type=b.id where a.type=? ",[req.id],(err,results)=>{
         if (err) {
             console.log(err)
             res(err,null)
@@ -26,4 +36,4 @@ const getInformationById = (req ,res)=>{
 }
 
 
-module.exports={getInformation,getInformationById}
+module.exports={getInformation,getInformationById,getInformationByType}

@@ -1,7 +1,7 @@
 const express = require('express');
 
 const {showEmergency,showEmergencyById} = require('../src/controllers/EmergencyController');
-const {showInformation,showInformationById} = require('../src/controllers/InformationController');
+const {showInformation,showInformationById,showInformationByType} = require('../src/controllers/InformationController');
 const {showGuide} = require('../src/controllers/GuideController');
 const {showDisaster} = require('../src/controllers/DisasterController');
 const validators = require('../src/validators/validator')
@@ -15,10 +15,10 @@ router.get('/emergency', showEmergency);
 router.get('/emergency/search', showEmergencyById);
 
 // Get All information
-router.get('/information', showInformation);
+router.get('/information/type/:id', showInformationByType);
  
 // Get Single information
-router.get('/information/search', showInformationById);
+router.get('/information/:id', showInformationById);
 
 // Get All Guide
 router.get('/guide', showGuide);
