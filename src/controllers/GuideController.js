@@ -9,7 +9,14 @@ const showGuide = (req,res)=> {
             if (err) {
                 res.send(err);
             } else {
-                res.json(results)
+                let type = '';
+                let description = '';
+                results.forEach((val,key) => {
+                    type = val.type;
+                    description += val.order+'. '+val.description+' ';
+                });
+                resEnd = {'type':type, 'description':description};
+                res.json([resEnd])
             }
         });
     }
