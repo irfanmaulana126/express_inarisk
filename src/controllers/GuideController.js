@@ -13,7 +13,7 @@ const showGuide = (req,res)=> {
                 let description = '';
                 results.forEach((val,key) => {
                     type = val.type;
-                    description += val.order+'. '+val.description+' ';
+                    description += val.order+'. '+val.description+'. ';
                 });
                 resEnd = {'type':type, 'description':description};
                 res.json([resEnd])
