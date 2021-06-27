@@ -2,10 +2,10 @@ const {getGuide}= require('../models/guideModel')
 
 const showGuide = (req,res)=> {
     
-    if(req.query.risk === undefined){
+    if(req.params.id === undefined){
         res.status(201).json({error: "harus menyertakan param risk "});
     }else{
-        getGuide(req.query,(err,results)=>{
+        getGuide(req.params,(err,results)=>{
             if (err) {
                 res.send(err);
             } else {

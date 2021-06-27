@@ -21,7 +21,7 @@ router.get('/information/type/:id', showInformationByType);
 router.get('/information/:id', showInformationById);
 
 // Get All Guide
-router.get('/guide', showGuide);
+router.get('/guide/:id', showGuide);
 
 // Get All Guide
 router.get('/disaster', showDisaster);
